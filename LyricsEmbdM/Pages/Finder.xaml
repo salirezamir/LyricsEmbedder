@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="LyricsEmbdM.Pages.Finder">
+
+    <Grid RowDefinitions="3*,*,Auto,Auto"
+          RowSpacing="10" Margin="10,10">
+        <Editor IsReadOnly="False" x:Name="eLyrics" Placeholder="Lyrics be Here :) " Grid.Row="0" HorizontalTextAlignment="Center"/>
+
+        <HorizontalStackLayout Spacing="10" Grid.Row="2" HorizontalOptions="CenterAndExpand">
+            <Entry x:Name="eTitle" WidthRequest="150" Placeholder="Title" HorizontalTextAlignment="Center"/>
+            <Entry x:Name="eArt" WidthRequest="150" Placeholder="Artist" HorizontalTextAlignment="Center"/>
+        </HorizontalStackLayout>
+        
+        <HorizontalStackLayout Spacing="10" Grid.Row="3" HorizontalOptions="CenterAndExpand">
+            <Button x:Name="bInput" WidthRequest="150" Text="From input" Clicked="bInput_Clicked"/>
+            <Button x:Name="bFile" WidthRequest="150" Text="From file" Clicked="bFile_Clicked"/>
+        </HorizontalStackLayout>
+    </Grid>
+
+</ContentPage>

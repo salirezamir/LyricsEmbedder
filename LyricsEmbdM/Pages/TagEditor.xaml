@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="LyricsEmbdM.Pages.TagEditor">
+    <Grid RowDefinitions="300,Auto,Auto,Auto,Auto,Auto,Auto"
+          ColumnDefinitions="*,*,2*" Margin="10,0"
+          RowSpacing="10" ColumnSpacing="10">
+        <ImageButton x:Name="ibAlbArt" Clicked="ibAlbArt_Clicked"
+                     Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="0"/>
+        <!---->
+        <Entry x:Name="eTittle" Placeholder="Tittle"
+               SemanticProperties.Hint="Tittle"
+               ClearButtonVisibility="WhileEditing"
+               Grid.Column="0" Grid.ColumnSpan="2"
+               HorizontalTextAlignment="Center" Grid.Row="1"/>
+        <Entry x:Name="eAlbum" Placeholder="Album"
+               SemanticProperties.Hint="Album"
+               ClearButtonVisibility="WhileEditing"
+               HorizontalTextAlignment="Center"
+               Grid.Column="2" Grid.Row="1"/>
+        <!---->
+        <Entry x:Name="eArtist" Placeholder="Artist"
+               SemanticProperties.Hint="Artist"
+               ClearButtonVisibility="WhileEditing"
+               HorizontalTextAlignment="Center"
+               Grid.Column="0" Grid.ColumnSpan="2"
+               Grid.Row="2"/>
+        <Entry x:Name="eAlbumArtist" Placeholder="AlbumArtist"
+               SemanticProperties.Hint="AlbumArtist"
+               ClearButtonVisibility="WhileEditing"
+               HorizontalTextAlignment="Center"
+               Grid.Column="2" Grid.Row="2"/>
+        <!---->
+        <Entry x:Name="eComposser" Placeholder="Composser"
+               SemanticProperties.Hint="Composser"
+               ClearButtonVisibility="WhileEditing"
+               HorizontalTextAlignment="Center"
+               Grid.Column="0" Grid.ColumnSpan="2"
+               Grid.Row="3"/>
+        <Entry x:Name="eGenre" Placeholder="Genre"
+               SemanticProperties.Hint="Genre"
+               ClearButtonVisibility="WhileEditing"
+               HorizontalTextAlignment="Center"
+               Grid.Column="2" Grid.Row="3"/>
+        <!---->
+        <Entry x:Name="eTrackNum" Placeholder="TrackNum"
+               SemanticProperties.Hint="TrackNum"
+               ClearButtonVisibility="WhileEditing"
+               HorizontalTextAlignment="Center"
+               Keyboard="Numeric"
+               Grid.Column="0" Grid.Row="4"/>
+        <Entry x:Name="eDiscNum" Placeholder="DiscNum"
+               SemanticProperties.Hint="DiscNum"
+               ClearButtonVisibility="WhileEditing"
+               HorizontalTextAlignment="Center"
+               Keyboard="Numeric"
+               Grid.Column="1" Grid.Row="4"/>
+        <Entry x:Name="eYear" Placeholder="Year"
+               SemanticProperties.Hint="Year"
+               ClearButtonVisibility="WhileEditing"
+               HorizontalTextAlignment="Center"
+               Keyboard="Numeric"
+               Grid.Column="2"  Grid.Row="4"/>
+        <!---->
+        <Entry x:Name="eComment" Placeholder="Comment"
+               SemanticProperties.Hint="Comment"
+               ClearButtonVisibility="WhileEditing"
+               HorizontalTextAlignment="Center"
+               Grid.Column="0" Grid.ColumnSpan="3"
+               Grid.Row="5"/>
+        <!---->
+        <Button x:Name="bSave" Text="Save"
+                IsEnabled="False" Clicked="bSave_Clicked"
+                Grid.Row="6" Grid.Column="0"/>
+        <Button x:Name="bReset" Text="Reset"
+                Clicked="bReset_Clicked"
+                Grid.Row="6" Grid.Column="1"/>
+        <Button x:Name="bFile" Text="FilePicker"
+                Clicked="bFile_Clicked"
+                Grid.Row="6" Grid.Column="2"/>
+    </Grid>
+</ContentPage>

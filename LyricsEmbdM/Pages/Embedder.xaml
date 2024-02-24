@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="LyricsEmbdM.Pages.Embedder">
+    <Grid RowDefinitions="*,Auto,Auto"
+          RowSpacing="10" Margin="10,10">
+
+        <Label x:Name="tCommandL"
+            Grid.Row="0"
+            Text=""
+            HorizontalTextAlignment="Center"
+            LineBreakMode="WordWrap"
+            VerticalTextAlignment="End"
+            HorizontalOptions="CenterAndExpand"
+            VerticalOptions="Start"/>
+
+        <Label x:Name="tHint" Text="✔️:Lyrics Embedded ❌:Lyrics Not Found ⚠️:Lyrics Existed" HorizontalOptions="Center"
+               HorizontalTextAlignment="Center" Grid.Row="1" Grid.ColumnSpan="2"/>
+
+        <HorizontalStackLayout Grid.Row="2" Spacing="10" HorizontalOptions="CenterAndExpand">
+            <Button x:Name="bExecute" WidthRequest="100" Text="Pick Files"  Clicked="bExecute_Clicked"/>
+            <Button x:Name="bClear" WidthRequest="100" Text="Clear" Clicked="bClear_Clicked"/>
+            <Label Text="Replace Lyrics ?" VerticalTextAlignment="Center"/>
+            <Switch x:Name="sSkip" IsToggled="False" Toggled="sSkip_Toggled"/>
+        </HorizontalStackLayout>
+    </Grid>
+</ContentPage>
