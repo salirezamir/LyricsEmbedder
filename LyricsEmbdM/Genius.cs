@@ -18,15 +18,23 @@ namespace LyricsEmbdM
 
         public Genius()
         {
+            if (Preferences.Default.ContainsKey("my_key"))
+            {
+                GeniusApiKey = Preferences.Default.Get("my_key", "");
+            }
+            else
+            {
+                throw new Exception("API Key not found");
+            }
             httpClient = new HttpClient();
             httpClient.DefaultRequestHeaders.Add("Authorization", $"Bearer {GeniusApiKey}");
         }
 
-        public async Task<string> GetLyricsAsync(string songTitle, string artist)
+        public async Task<string> GetLyricsAsync(string songTitle)
         {
             try
             {
-                string searchUrl = $"{GeniusApiBaseUrl}/search?q={Uri.EscapeDataString(songTitle)}%20{Uri.EscapeDataString(artist)}";
+                string searchUrl = $"{GeniusApiBaseUrl}/search?q={Uri.EscapeDataString(songTitle)}";
                 HttpResponseMessage searchResponse = await httpClient.GetAsync(searchUrl);
                 searchResponse.EnsureSuccessStatusCode();
                 string searchResponseContent = await searchResponse.Content.ReadAsStringAsync();

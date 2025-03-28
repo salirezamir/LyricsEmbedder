@@ -2,6 +2,19 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="LyricsEmbdM.Pages.Settings">
-
+    <Grid ColumnDefinitions="3*,*" Margin="10,0"
+          RowSpacing="10" ColumnSpacing="10"
+          RowDefinitions="auto,auto">
+        <Entry x:Name="eKey" Placeholder="KEY"
+               SemanticProperties.Hint="KEY"
+               ClearButtonVisibility="WhileEditing"
+               Grid.Column="0" Grid.Row="1"
+               HorizontalTextAlignment="Center" />
+        <Button x:Name="bSaveKey" Text="SaveKEY"
+                Clicked="bSaveKey_Clicked"
+                Grid.Row="1" Grid.Column="1"/>
+        <Label Text="Key Found" TextColor="Green" Grid.Row="0"
+               Grid.Column="0" x:Name="lKey"/>
+    </Grid>
 
 </ContentPage>

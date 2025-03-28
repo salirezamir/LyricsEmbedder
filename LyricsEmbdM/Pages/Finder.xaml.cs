@@ -11,23 +11,30 @@ public partial class Finder : ContentPage
 
     private async void bInput_Clicked(object sender, EventArgs e)
     {
-        Genius genius = new Genius();
-        string lyrics = await genius.GetLyricsAsync(eTitle.Text, eArt.Text);
-        if (lyrics == string.Empty)
+        try
         {
-            if (Application.Current.RequestedTheme == AppTheme.Dark)
-                eLyrics.TextColor = Colors.IndianRed;
+            Genius genius = new Genius();
+            string lyrics = await genius.GetLyricsAsync(eTitle.Text);
+            if (lyrics == string.Empty)
+            {
+                if (Application.Current.RequestedTheme == AppTheme.Dark)
+                    eLyrics.TextColor = Colors.IndianRed;
+                else
+                    eLyrics.TextColor = Colors.DarkRed;
+                eLyrics.Text = "Lyrics Not Available :(";
+            }
             else
-                eLyrics.TextColor = Colors.DarkRed;
-            eLyrics.Text = "Lyrics Not Available :(";
+            {
+                if (Application.Current.RequestedTheme == AppTheme.Dark)
+                    eLyrics.TextColor = Colors.LightGreen;
+                else
+                    eLyrics.TextColor = Colors.Green;
+                eLyrics.Text = lyrics;
+            }
         }
-        else
+        catch (Exception ex)
         {
-            if (Application.Current.RequestedTheme == AppTheme.Dark)
-                eLyrics.TextColor = Colors.LightGreen;
-            else
-                eLyrics.TextColor = Colors.Green;
-            eLyrics.Text = lyrics;
+            await DisplayAlert("Error", ex.Message, "OK");
         }
     }
 
@@ -50,9 +57,8 @@ public partial class Finder : ContentPage
         var fileResult = await FilePicker.PickAsync(options);
         var tfile = TagLib.File.Create(fileResult.FullPath);
         Genius genius = new Genius();
-        string lyrics = await genius.GetLyricsAsync(tfile.Tag.Title, tfile.Tag.Artists[0]);
-        eArt.Text = tfile.Tag.Artists[0];
-        eTitle.Text = tfile.Tag.Title;
+        string lyrics = await genius.GetLyricsAsync(tfile.Tag.Title + " " + tfile.Tag.Performers[0]);
+        eTitle.Text = tfile.Tag.Title + tfile.Tag.Performers[0];
         if (lyrics == string.Empty)
         {
             if (Application.Current.RequestedTheme == AppTheme.Dark)
@@ -69,5 +75,17 @@ public partial class Finder : ContentPage
                 eLyrics.TextColor = Colors.Green;
             eLyrics.Text = lyrics;
         }
+    }
+
+    private void bClip_Clicked(object sender, EventArgs e)
+    {
+        Clipboard.Default.SetTextAsync(eLyrics.Text);
+        DisplayAlert("SUCCESS", "COPIED", "OK");
+    }
+
+    private void bClear_Clicked(object sender, EventArgs e)
+    {
+        eLyrics.Text = string.Empty;
+        eTitle.Text = string.Empty;
     }
 }
