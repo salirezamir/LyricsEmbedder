@@ -87,5 +87,30 @@ public partial class Finder : ContentPage
     {
         eLyrics.Text = string.Empty;
         eTitle.Text = string.Empty;
+#if ANDROID
+        IMusicFilePicker filePicker;
+        try
+        {
+            var stream =  filePicker.PickMusicFileAsync();
+            
+            // Do something with the stream
+            using (stream)
+            {
+                // For example, copy to a local file
+                var localPath = Path.Combine(FileSystem.CacheDirectory, "selected_music.mp3");
+                using (var fileStream = File.Create(localPath))
+                {
+                    await stream.CopyToAsync(fileStream);
+                }
+                
+                // Now you can use localPath to play the music
+            }
+        }
+        catch (Exception ex)
+        {
+            await Shell.Current.DisplayAlert("Error", ex.Message, "OK");
+        }
+#endif
+
     }
 }
